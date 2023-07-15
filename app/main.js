@@ -5,7 +5,7 @@ const commands = require("./commands");
 console.log("Logs from your program will appear here!");
 
 // Uncomment this block to pass the first stage  test
-const server = net.createServer((connection) => {
+const server = net.createServer((data) => {
   // Handle connection 123
   connection.on("data", () => {
     console.log("connected");
