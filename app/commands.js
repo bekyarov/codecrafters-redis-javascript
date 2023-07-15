@@ -1,9 +1,5 @@
-const echo = (commandArgs) => {
-  return `+${commandArgs[0]}\r\n`;
-};
-
-const ping = (_commandArgs) => {
-  return "+PONG\r\n";
-};
-
-module.exports = { echo, ping };
+const ping = require("./commands/ping");
+const echo = require("./commands/echo");
+const get = require("./commands/get");
+const set = require("./commands/set");
+module.exports = { echo, ping, get, set };

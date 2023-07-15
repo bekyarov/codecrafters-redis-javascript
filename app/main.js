@@ -1,5 +1,6 @@
 const net = require("net");
 const commands = require("./commands");
+const responseBuilder = require("./response_builder");
 
 // You can use print statements as follows for debugging, they'll be visible when running tests.
 console.log("Logs from your program will appear here!");
@@ -27,6 +28,11 @@ const processData = (data) => {
   args = parseInt(data[0].slice(1));
 
   const command = data[2].toLowerCase();
+
+  if (!isSupportedCommand(command)) {
+    return responseBuilder.respondOK();
+  }
+
   const commandArgs = [];
 
   for (let i = 3; i <= args * 2; i += 2) {
@@ -35,4 +41,8 @@ const processData = (data) => {
 
   const commandFunc = commands[command];
   return commandFunc(commandArgs);
+};
+
+const isSupportedCommand = (cmd) => {
+  return commands.hasOwnProperty(cmd);
 };
