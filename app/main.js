@@ -7,13 +7,13 @@ console.log("Logs from your program will appear here!");
 // Uncomment this block to pass the first stage  test
 const server = net.createServer((connection) => {
   // Handle connection 123
-  connection.on("data", () => {
-    console.log("connected");
-    connection.write("+PONG\r\n");
-  });
-  connection.on("end", () => {
-    console.log("you've disconnected");
-  });
+  // connection.on("data", () => {
+  //   console.log("connected");
+  //   connection.write("+PONG\r\n");
+  // });
+  // connection.on("end", () => {
+  //   console.log("you've disconnected");
+  // });
 
   connection.on("data", (data) => {
     connection.write(processData(data));
