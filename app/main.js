@@ -1,4 +1,5 @@
 const net = require("net");
+const commands = require("./commands");
 
 // You can use print statements as follows for debugging, they'll be visible when running tests.
 console.log("Logs from your program will appear here!");
@@ -13,6 +14,21 @@ const server = net.createServer((connection) => {
   connection.on("end", () => {
     console.log("you've disconnected");
   });
+
+  const processData = (data) => {
+    data = data.toString().split("\r\n");
+    args = parseInt(data[0].slice(1));
+  };
+
+  const command = data[2].toLowerCase();
+  const commandArgs = [];
+
+  for (let i = 3; i <= args * 2; i += 2) {
+    commandArgs.push(data[i + 1]);
+  }
+
+  const commandFunc = commands[command];
+  return commandFunc(commandArgs);
 });
 
 server.listen(6379, "127.0.0.1");
