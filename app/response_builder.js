@@ -15,4 +15,4 @@ const respondStringValue = (value) => {
   return `$${length}\r\n ${value}\r\n`;
 };
 
-module.exports = { buildReponse, respondOK, respondNil, respondStringValue };
+module.exports = { buildResponse, respondOK, respondNil, respondStringValue };
