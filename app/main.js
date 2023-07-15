@@ -18,21 +18,21 @@ const server = net.createServer((connection) => {
   connection.on("data", (data) => {
     connection.write(processData(data));
   });
-
-  server.listen(6379, "127.0.0.1");
-
-  const processData = (data) => {
-    data = data.toString().split("\r\n");
-    args = parseInt(data[0].slice(1));
-
-    const command = data[2].toLowerCase();
-    const commandArgs = [];
-
-    for (let i = 3; i <= args * 2; i += 2) {
-      commandArgs.push(data[i + 1]);
-    }
-
-    const commandFunc = commands[command];
-    return commandFunc(commandArgs);
-  };
 });
+
+server.listen(6379, "127.0.0.1");
+
+const processData = (data) => {
+  data = data.toString().split("\r\n");
+  args = parseInt(data[0].slice(1));
+
+  const command = data[2].toLowerCase();
+  const commandArgs = [];
+
+  for (let i = 3; i <= args * 2; i += 2) {
+    commandArgs.push(data[i + 1]);
+  }
+
+  const commandFunc = commands[command];
+  return commandFunc(commandArgs);
+};
