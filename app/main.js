@@ -9,8 +9,6 @@ const server = net.createServer((connection) => {
   connection.on("data", () => {
     console.log("connected");
     connection.write("+PONG\r\n");
-    connection.write("+PONG\r\n");
-    connection.write("+PONG\r\n");
   });
   connection.on("end", () => {
     console.log("you've disconnected");
